@@ -16,7 +16,8 @@ export function Video(props:VideoProps) {
   const {data} =useGetLessonBylugQuery({
     variables:{
       slug: props.lessonSlug
-    }
+    },
+    fetchPolicy: "no-cache"
   });
 
   if(!data || !data.lesson){
