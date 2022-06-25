@@ -1,9 +1,8 @@
 import { Logo } from "../components/Logo";
 import { useState, FormEvent } from "react";
-import { gql, useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { useCreateSubscribesMutation } from "../graphql/generated";
-
+import mockupImage from "../assets/code_mockup.png"
 
 
 export function Subscribe(){
@@ -83,7 +82,7 @@ export function Subscribe(){
       </div>
 
       {/* sempre importar da pasta raiz */}
-      <img src="/src/assets/code_mockup.png" className="mt-10" alt="" />
+      <img src={mockupImage} className="mt-10" alt="" />
     </div>
   )
 }
