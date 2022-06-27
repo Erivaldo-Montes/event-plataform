@@ -1,34 +1,58 @@
 import { Logo } from "../components/Logo";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreateSubscribesMutation } from "../graphql/generated";
 import mockupImage from "../assets/code_mockup.png"
+import { ButtonLoading } from "../components/loadingEventPage/buttonLoading";
+import classNames from "classnames";
+import { TrendUp } from "phosphor-react";
 
 
-export function Subscribe(){
+export function Subscribe() {
   const [name, setName] = useState("");
-  const [email, setEmail] =useState("");
+  const [email, setEmail] = useState("");
+  const [emptyForm, setEmptyForm] = useState(false)
+  const [isEmptyForm, setIsEmptyForm] = useState(false)
+  const [isSubscriber, setIsSubscriber] = useState(false)
+  const setCookie = () => localStorage.setItem("subscriber", "true")
   const navigate = useNavigate();
 
-  // retorna um array [função, {}]
-  const [createSubscribes,{loading}] = useCreateSubscribesMutation();
+  const [createSubscribes, { loading, error, data }] = useCreateSubscribesMutation();
+  useEffect(() => {
+    if (error) {
+      alert(error)
+    }
+    if (localStorage.getItem("subscriber") === "true") {
+      setIsSubscriber(true)
+    }
+  })
 
-  async function handleSubscriber(event: FormEvent){
+  // retorna um array [função, {}]
+
+  async function handleSubscriber(event: FormEvent) {
     event.preventDefault();
-    console.log(name, email)
-    
+
+    if (name === "" || email === "") {
+      setIsEmptyForm(true)
+      setEmptyForm(true);
+      setTimeout(() => {
+        setEmptyForm(false);
+      }, 500);
+
+      return
+    }
+
     await createSubscribes({
-      variables:{
+      variables: {
         name,
         email
       }
-    });
+    }).then(() => setCookie())
 
-
-    navigate("/event")
+    navigate(`event/`)
   }
 
-  return(
+  return (
     // tela de login
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
       {/* sessão do login e descrição */}
@@ -42,39 +66,70 @@ export function Subscribe(){
           </h1>
 
           <p className="mt-4 text-gray-200 leading-relaxed">
-          Em apenas uma semana você vai dominar na prática uma das tecnologias mais utilizadas e com alta demanda para acessar as melhores oportunidades do mercado.
+            Em apenas uma semana você vai dominar na prática uma das tecnologias mais utilizadas e com alta demanda para acessar as melhores oportunidades do mercado.
           </p>
 
         </div>
 
         {/* area de login */}
-        <div className="p-8 bg-gray-700 border border-gray-500 rounded">
+        <div className={classNames("p-8 bg-gray-700 border border-gray-500 rounded", {
+          "animate-alert": emptyForm
+        })}>
           <strong className="text-2xl mb-6 block">Inscreva-se gratuitamente</strong>
 
           {/* formulário */}
           <form onSubmit={handleSubscriber} action="" className="flex flex-col w-full gap-2">
-            
-            {/* nome */}
-            <input 
-              className="bg-gray-900 rounded px-6 h-14"
-              type="text"
-              placeholder="seu nome completo"
-              onChange={event => setName(event.target.value)}
-            />
+            {
+              isEmptyForm ? (
+                <div className="text-red-600 text-sm">
+                  preencha todos os campos
+                </div>) : (
+                null
+              )
+            }
+            {!isSubscriber ? (
+              <>
+                {/* nome */}
+                <input
+                  className="bg-gray-900 rounded px-6 h-14"
+                  type="text"
+                  placeholder="seu nome completo"
+                  onChange={event => setName(event.target.value)}
+                />
 
-            {/* email */}
-            <input
-              className="bg-gray-900 rounded px-6 h-14"
-              type="email" 
-              placeholder="Digite seu email"
-              onChange={event => setEmail(event.target.value)}
-            />
+                {/* email */}
+                <input
+                  className="bg-gray-900 rounded px-6 h-14"
+                  type="email"
+                  placeholder="Digite seu email"
+                  onChange={event => setEmail(event.target.value)}
+                />
+              </>
+            ) : (
+              <div className="text-2xl my-4 text-gray-300 text-center">
+                Já Inscrito
+              </div>
+            )}
 
-            <button 
+            <button
               type="submit"
               disabled={loading}
-              className="mt-4 bg-green-500 uppercase py-4 rounded font-bold text-sm hover:bg-green-700 transition-colors disabled:opacity-50">
-              Garantir a inscrição
+              className={classNames("mt-4 bg-green-500 uppercase py-4 rounded font-bold text-sm hover:bg-green-700 transition-colors disabled:opacity-50",
+              )}>
+              {
+                !loading ? (
+                  isSubscriber ? (
+                    <div onClick={() => {
+                      navigate("/event")
+                      return <ButtonLoading />
+                    }}>Ir para evento</div>
+                  ) : (
+                    <div>Garantir vaga</div>
+                  )
+                ) : (
+                  <ButtonLoading />
+                )
+              }
             </button>
 
           </form>

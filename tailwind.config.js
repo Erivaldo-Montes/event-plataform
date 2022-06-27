@@ -4,10 +4,37 @@ module.exports = {
   theme: {
     extend: {
       // import a imagem de fundo sempre do src
-      backgroundImage:{
+      backgroundImage: {
         blur: "url(/src/assets/blur_background.png)"
       },
-      fontFamily:{
+      animation: {
+        waintingCharge: "5s ease-in-out 0s infinite normal none running loading",
+        alert: "alert 2s ease-in-out 0s 1 normal"
+      },
+      keyframes: {
+        loading: {
+          "0%, 100%": {
+            backgroundPosition: "-500px"
+          },
+          "100%": {
+            backgroundPosition: "0px"
+          }
+        },
+        alert: {
+          "0%": { transform: "translateX(0)" },
+          "5%": { transform: " translateX(-10px)" },
+          "10%": { transform: "translateX(10px)" },
+          "15%": { transform: "translateX(-10px)" },
+          "20%": { transform: "translateX(10px)" },
+          "25%": { transform: "translateX(-10px)" },
+          "30%": { transform: "translateX(10px)" },
+          "35%": { transform: "translateX(-10px)" },
+          "40%": { transform: "translateX(10px)" },
+          "45%": { transform: "translateX(-10px)" },
+          "50%": { transform: "translateX(0)" },
+        }
+      },
+      fontFamily: {
         sans: "Roboto, sans-serif"
       },
       colors: {
@@ -37,5 +64,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')
+  ],
 }
