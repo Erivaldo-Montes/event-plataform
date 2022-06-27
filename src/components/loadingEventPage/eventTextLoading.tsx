@@ -1,5 +1,7 @@
 import { ComunidadeDiscordCard } from "../linksCards/comunidadeDiscordCard"
 import { TeacherLoading } from "./teacherLoading";
+import { CardWallpaperComplementar } from "../linksCards/cardWallpaperComplementar"
+
 
 export function EventTextLoading() {
   return (
@@ -24,6 +26,7 @@ export function EventTextLoading() {
         <ComunidadeDiscordCard />
       </div >
       <TeacherLoading />
+      <CardWallpaperComplementar />
 
     </div >
 
