@@ -6,7 +6,7 @@ import mockupImage from "../assets/code_mockup.png"
 import { ButtonLoading } from "../components/loadingEventPage/buttonLoading";
 import classNames from "classnames";
 import { TrendUp } from "phosphor-react";
-import {Footer} from "../components/footer/footer"
+import { Footer } from "../components/footer/footer"
 
 
 export function Subscribe() {
@@ -79,10 +79,10 @@ export function Subscribe() {
           <strong className="text-2xl mb-6 block">Inscreva-se gratuitamente</strong>
 
           {/* formulário */}
-          <form onSubmit={handleSubscriber} action="" className="flex flex-col w-full gap-2">
+          <form onSubmit={handleSubscriber} action="" className="flex relative flex-col w-full gap-2">
             {
               isEmptyForm ? (
-                <div className="text-red-600 text-sm">
+                <div className="text-red-600 text-sm absolute -top-6">
                   preencha todos os campos
                 </div>) : (
                 null
@@ -139,7 +139,7 @@ export function Subscribe() {
 
       {/* sempre importar da pasta raiz */}
       <img src={mockupImage} className="mt-10" alt="" />
-      <Footer/>
+      <Footer />
     </div>
   )
 }
