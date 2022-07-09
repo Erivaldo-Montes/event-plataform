@@ -1,7 +1,7 @@
 import "@vime/core/themes/default.css";
 import { DefaultUi, Player, Youtube } from "@vime/react";
-import { useGetvideoIdQuery } from "../../graphql/generated";
-import { VideoLoading } from "../loadingEventPage/VideoLoading";
+import { useGetvideoIdQuery } from "../../../graphql/generated";
+import { VideoLoading } from "../../loadingEventPage/VideoLoading";
 
 
 interface PlayerProps {

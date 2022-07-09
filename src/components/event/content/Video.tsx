@@ -1,9 +1,9 @@
-import { useGetLessonBylugQuery } from "../../graphql/generated";
-import { EventLoading } from "../loadingEventPage"
+import { useGetLessonBylugQuery } from "../../../graphql/generated";
+import { EventLoading } from "../../loadingEventPage"
 import { ComunidadeDiscordCard } from "../linksCards/comunidadeDiscordCard"
 import { PlayerEvent } from "./player";
-import { CardWallpaperComplementar } from "../linksCards/cardWallpaperComplementar"
-
+import { CardWallpaperComplementar } from "../linksCards/cardWallpaperComplementar";
+import { useAppSelector } from "../../../redux/hooks"
 
 interface VideoProps {
   lessonSlug: string
@@ -11,6 +11,7 @@ interface VideoProps {
 
 export function Video(props: VideoProps) {
 
+  const isOpen = useAppSelector(state => state.toggleIsOpen.value)
   // busca a nova lesson 
   const { data } = useGetLessonBylugQuery({
     variables: {
@@ -27,7 +28,8 @@ export function Video(props: VideoProps) {
   }
 
   return (
-    <div className="flex-1">
+    <div className={`${isOpen ? 'fixed z-10' : 'static'
+      } flex-1 md:static`}>
       {/* player do video */}
       <div className="flex-1">
         <PlayerEvent slug={props.lessonSlug} />
@@ -36,7 +38,7 @@ export function Video(props: VideoProps) {
       {/* seção de titulo de descrição */}
       <div className="mx-auto p-6 max-w-[1100px]">
         {/* cabeça */}
-        <div className="flex justify-start gap-16">
+        <div className="flex flex-col md:flex-row gap-[28px] justify-start md:gap-16">
           {/* titulo e descrição */}
           <div className="flex-1">
 

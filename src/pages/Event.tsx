@@ -1,18 +1,22 @@
 import { useParams } from "react-router-dom";
-import { Header } from "../components/Header";
-import { Sidebar } from "../components/Sidebar";
-import { Video } from "../components/content/Video";
+import { Header } from "../components/event/header/Header";
+import { Sidebar } from "../components/event/sidebar/Sidebar";
+import { Video } from "../components/event/content/Video";
 import { EventLoading } from "../components/loadingEventPage"
+import {Footer} from "../components/footer/footer"
+
 export function Event() {
   const { slug } = useParams<{ slug: string }>()
-
   return (
-    <div className="flex flex-col min-h-screen scrollbar scrollbar-thumb-gray-400 scrollbar-track-gray-500">
+    <div className="flex flex-col scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
       <Header />
-      <main className="flex flex-1">
+      <main className="flex flex-1 max-w-full">
         {slug ? <Video lessonSlug={slug} /> : <EventLoading />}
         <Sidebar />
       </main>
+      <footer>
+         <Footer/>
+      </footer>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { Logo } from "../components/Logo";
+import { Logo } from "../components/event/header/Logo";
 import { useState, FormEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreateSubscribesMutation } from "../graphql/generated";
@@ -6,6 +6,7 @@ import mockupImage from "../assets/code_mockup.png"
 import { ButtonLoading } from "../components/loadingEventPage/buttonLoading";
 import classNames from "classnames";
 import { TrendUp } from "phosphor-react";
+import {Footer} from "../components/footer/footer"
 
 
 export function Subscribe() {
@@ -56,9 +57,9 @@ export function Subscribe() {
     // tela de login
     <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
       {/* sessão do login e descrição */}
-      <div className="w-full max-w-[1100px] flex items-center justify-between mt-20 mx-auto">
+      <div className="w-full max-w-[1100px] flex flex-col items-center gap-8 justify-between mt-10 mx-auto md:mt-20 md:flex-row md:gap-0">
         {/* apresentação */}
-        <div className="max-w-[640px]">
+        <div className="text-center flex p-4 items-center flex-col md:text-justify md:p-0 md:max-w-[640px] md:block">
           <Logo />
 
           <h1 className="mt-8 text-[2.5rem] leading-tight">
@@ -72,7 +73,7 @@ export function Subscribe() {
         </div>
 
         {/* area de login */}
-        <div className={classNames("p-8 bg-gray-700 border border-gray-500 rounded", {
+        <div className={classNames("p-8 bg-gray-700 border border-gray-500 rounded w-full md:w-auto", {
           "animate-alert": emptyForm
         })}>
           <strong className="text-2xl mb-6 block">Inscreva-se gratuitamente</strong>
@@ -138,6 +139,7 @@ export function Subscribe() {
 
       {/* sempre importar da pasta raiz */}
       <img src={mockupImage} className="mt-10" alt="" />
+      <Footer/>
     </div>
   )
 }
