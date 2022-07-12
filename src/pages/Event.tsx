@@ -10,7 +10,7 @@ export function Event() {
   return (
     <div className="flex flex-col max-h-screen md:overflow-y-scroll md:scrollbar-thin md:scrollbar-thumb-gray-500 md:scrollbar-track-transparent">
       <Header />
-      <main className="flex flex-1 max-w-full">
+      <main className="flex flex-1 max-h-full">
         {slug ? <Video lessonSlug={slug} /> : <EventLoading />}
         <Sidebar />
       </main>
