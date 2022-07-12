@@ -18,7 +18,7 @@ export function Sidebar() {
       : `fixed z-10 -right-full md:static `
 
       } 
-      transition-all bg-gray-700 p-6 border-l flex-col w-screen md:w-[21.75rem]  md:block md:right-0 max-h-[90vh] md:max-h-full border-gray-600 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent`}>
+      transition-all bg-gray-700 p-6 border-l flex-col w-screen md:w-[21.75rem]  md:block md:right-0 max-h-[90vh] md:max-h-full border-gray-600 overflow-y-scroll md:overflow-y-auto`}>
       <span className="font-bold text-2xl mb-6 pb-6 border-b border-zinc-500 block">
         Cronograma de aulas
       </span>
