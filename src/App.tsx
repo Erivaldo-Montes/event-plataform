@@ -8,11 +8,11 @@ import { store } from "./redux/store";
 function App() {
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Provider store={store}>
+      <Provider store={store}>
+        <BrowserRouter>
           <Router />
-        </Provider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
     </ApolloProvider>
   )
 }

@@ -8,7 +8,7 @@ import {Footer} from "../components/footer/footer"
 export function Event() {
   const { slug } = useParams<{ slug: string }>()
   return (
-    <div className="flex flex-col scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+    <div className="flex flex-col max-h-screen overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent">
       <Header />
       <main className="flex flex-1 max-w-full">
         {slug ? <Video lessonSlug={slug} /> : <EventLoading />}

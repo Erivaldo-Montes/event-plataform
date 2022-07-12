@@ -48,7 +48,7 @@ export function Video(props: VideoProps) {
             </h1>
 
             {/* descrição do video */}
-            <p className="mt-4 text-gray-200 leading-relaxed">
+            <p className="mt-4 text-gray-200 text-sm md:text-base leading-relaxed">
               {data.lesson.description}
             </p>
 
