@@ -55,7 +55,7 @@ export function Subscribe() {
 
   return (
     // tela de login
-    <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
+    <div className="min-h-screen max-h-screen overflow-y-scroll md:overflow-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent bg-blur bg-cover bg-no-repeat flex flex-col items-center">
       {/* sessão do login e descrição */}
       <div className="w-full max-w-[1100px] flex flex-col items-center gap-8 justify-between mt-10 mx-auto md:mt-20 md:flex-row md:gap-0">
         {/* apresentação */}
