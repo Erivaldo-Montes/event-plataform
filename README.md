@@ -1,6 +1,6 @@
 # Plataforma de eventos
 
-<p>
+<p align="center">
   <img src="src/assets/screenshots/apollo.png" width="50" title="apollo">
   <img src="src/assets/screenshots/react.png" width="50" title="react">
   <img src="src/assets/screenshots/redux.png" width="50" title="redux">
