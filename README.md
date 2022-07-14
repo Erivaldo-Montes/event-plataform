@@ -67,7 +67,7 @@ ou
 ```sh
 yarn dev
 ```
-
+### variáveis de ambiente
 como o projeto foi produzido com o graphcms deve-se configurar as credências
 de acesso.
 primeiro crie uma varialvel de ambiente chamada <strong>VITE_API_ACCESS_TOKEN</strong> que deve conter token de autorização do graphcms
